@@ -1,0 +1,41 @@
+######### NORMAL OPERATION  ###########
+
+### register
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+   
+   "username":"nicolas",
+   "password":"mdpnicolas"
+}
+
+### register
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+   
+   "username":"corentin",
+   "password":"mdpcorentin"
+}
+
+### register
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+   
+   "username":"axel",
+   "password":"mdpaxel"
+}
+
+### login
+POST http://localhost:3000/auths/login
+Content-Type: application/json
+
+{
+   
+   "username":"axel",
+   "password":"mdpaxel"
+}

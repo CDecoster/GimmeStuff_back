@@ -1,0 +1,85 @@
+######### NORMAL OPERATION  ###########
+
+### Read all users
+GET http://localhost:3000/users
+
+### Read user identified by 1
+GET http://localhost:3000/users/1
+
+
+### Create user ne fonctionne pas , mais inutile vu qu'on doit passer par register
+POST http://localhost:3000/users
+content-Type: application/application/json
+
+{
+    "username":"axel",
+    "password":"mdpaxel"
+}
+
+
+### Update the user identified by 2
+PUT http://localhost:3000/users/2
+Content-Type: application/json
+
+{
+    "password":"mdpupdated"
+}
+
+
+######## Donnez les droits admin a nous 3 ######
+### Update the user identified by 1
+PUT http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+    "admin":"true"
+}
+### Update the user identified by 2
+PUT http://localhost:3000/users/2
+Content-Type: application/json
+
+{
+    "admin":"true"
+}
+### Update the user identified by 3
+PUT http://localhost:3000/users/3
+Content-Type: application/json
+
+{
+    "admin":"true"
+}
+
+### Delete user identified by 
+DELETE http://localhost:3000/users/3
+
+
+######### ERROR OPERATION  ###########
+
+### Read user which does not exists
+GET http://localhost:3000/users/100
+
+### Create a user without info for a property
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username":"",
+    "password":"pierre"
+}
+
+### Update for a user which does not exist
+PUT http://localhost:3000/users/200
+Content-Type: application/json
+
+{
+    "username":"Magic Green 2"
+}
+
+### Update for a user which does not provide any info for a property
+PUT http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+    "username":"nico",
+    
+}
