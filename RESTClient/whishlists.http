@@ -1,0 +1,62 @@
+######### NORMAL OPERATION  ###########
+
+### Read all whishlists
+GET http://localhost:3000/whishlists
+
+### Read whishlist identified by 2
+GET http://localhost:3000/whishlists/1
+
+### Create a whishlist
+POST http://localhost:3000/whishlists
+Content-Type: application/json
+
+{
+    "title":"Magic Green",
+    "utilisateur":"dominique",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update the whishlist identified by 2
+PUT http://localhost:3000/whishlists/10
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Delete whishlist identified by 
+DELETE http://localhost:3000/whishlists/10
+
+
+######### ERROR OPERATION  ###########
+
+### Read whishlist which does not exists
+GET http://localhost:3000/whishlists/100
+
+### Create a whishlist without info for a property
+POST http://localhost:3000/whishlists
+Content-Type: application/json
+
+{
+    "title":"",
+    "utilisateur": "pierre",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update for a whishlist which does not exist
+PUT http://localhost:3000/whishlists/200
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a whishlist which does not provide any info for a property
+PUT http://localhost:3000/whishlists/1
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "utilisateur": "jerome",
+    "content":"1"
+}
