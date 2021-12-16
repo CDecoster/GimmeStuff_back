@@ -28,7 +28,7 @@ router.get("/:id", function (req, res) {
 
 // POST /whishlists : create a whishlist to be added to the wishlist.
 router.post("/", authorize, function (req, res) {
-  console.log("POST /whishlists");
+  console.log("POST /whishlists/add");
 
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
