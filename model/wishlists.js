@@ -7,7 +7,6 @@ const jsonDbPath = __dirname + "/../data/wishlists.json";
 
 
 
-/* au final c'est peut etre mieux de rename ce model et de tout remplacer en wishlist, il faudrait alors créer un model gift */
 // Default wishlist
 const defaultWishlists = [
   {

@@ -1,0 +1,74 @@
+######### NORMAL OPERATION  ###########
+
+### Read all gifts
+GET http://localhost:3000/gifts
+
+### Read gift identified by 2
+GET http://localhost:3000/gifts/1
+
+
+
+
+### Create a gift
+POST http://localhost:3000/gifts
+Content-Type: application/json
+
+{    
+    "title": "giftCreateTitle1",
+    "image": "giftCreateImage1",
+    "price": "giftCreatePrice1",
+    "reserved": "false",
+    "url": "testCreateurl1"
+  }
+
+### Update the gift identified by 3
+PUT http://localhost:3000/gifts/3
+Content-Type: application/json
+
+{
+    "title": "giftModifiedTitle"
+    
+}
+
+### Delete gift identified by 
+DELETE http://localhost:3000/gifts/3
+
+
+######### ERROR OPERATION  ###########
+
+### Read gift wich does not exists
+GET http://localhost:3000/gifts/100
+
+### Create a gift without info for a property
+POST http://localhost:3000/gifts
+Content-Type: application/json
+
+{
+    
+    "title": "",
+    "image": "giftCreateImage1",
+    "price": "giftCreatePrice1",
+    "reserved": "false",
+    "url": "testCreateurl1"
+  }
+
+### Update for a gift which does not exist 
+PUT http://localhost:3000/gifts/200
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a gift which does not provide any info for a property
+PUT http://localhost:3000/gifts/3
+Content-Type: application/json
+
+{
+    "title": "",
+    "image": "aze",
+    "price": "aze",
+    "reserved": "azed",
+    "url": "url"
+
+}

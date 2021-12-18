@@ -6,9 +6,8 @@ var router = express.Router();
 
 const wishlistModel = new Wishlists();
 
-/* si on a rename et change le model de wishlist en wishlist il faut faire la même chose ici et créer une route pour des cadeaux dans une wishlist ex : /wishlist=1/:id  pour déterminer une id de cadeau, c'est juste une idée , à discuter*/
 
-// GET /wishlists : read all the wishlists from the wishlist
+// GET /wishlists : read all the wishlists from a user
 router.get("/user=:id", function (req, res) {
   console.log(`in route GET /wishlists/user=${req.params.id}`);
 
@@ -16,7 +15,7 @@ router.get("/user=:id", function (req, res) {
 });
 
 
-// GET /wishlists/{id} : Get a wishlist from its id in the wishlist
+// GET /wishlists/{id} : Get a wishlist from its
 router.get("/:id", function (req, res) {
   console.log(`GET /wishlists/${req.params.id}`);
 
@@ -27,7 +26,7 @@ router.get("/:id", function (req, res) {
   return res.json(wishlist);
 });
 
-// GET /wishlists/ : Get wishlist from its user id
+// GET /wishlists/ : Get all wishlists
 router.get("/", function (req, res) {
 
 
@@ -37,7 +36,7 @@ router.get("/", function (req, res) {
 
 });
 
-// POST /wishlists : create a wishlist to be added to the wishlist.
+// POST /wishlists : create a wishlist 
 router.post("/", authorize, function (req, res) {
   console.log("POST /wishlists/add");
 
@@ -60,7 +59,7 @@ router.post("/", authorize, function (req, res) {
   return res.json(wishlist);
 });
 
-// DELETE /wishlists/{i} : delete a wishlist from the wishlist
+// DELETE /wishlists/{i} : delete a wishlist 
 router.delete("/:id", authorize, function (req, res) {
   console.log(`DELETE /wishlists/${req.params.id}`);
 
