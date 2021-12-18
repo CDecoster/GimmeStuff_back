@@ -78,10 +78,12 @@ class Gifts {
      */
   getOneByIdAmazon(idAmazon) {
     const gifts = parse(this.jsonDbPath, this.defaultGifts);
-    const foundIndex = gifts.findIndex((gift) => gift.idAmazon == idAmazon);
-    if (foundIndex < 0) return;
-    console.log(foundIndex + " FOUND INDEX");
-    return gifts[foundIndex];
+    for (var i in gifts){
+      if(gifts[i].idAmazon === idAmazon){
+        return gifts[i];
+      }
+    }
+    return;
   }
 
   /**
