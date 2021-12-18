@@ -71,6 +71,20 @@ class Users {
     return items[foundIndex];
   }
 
+    /**
+   * Returns the item identified by username
+   * @param {string} email - username of the item to find
+   * @returns {object} the item found or undefined if the username does not lead to a item
+   */
+     getOneByEmail(email) {
+      const items = parse(this.jsonDbPath, this.defaultItems);
+      const foundIndex = items.findIndex((item) => item.email == email);
+      if (foundIndex < 0) return;
+  
+      return items[foundIndex];
+    }
+  
+
   /**
    * Add a item in the DB and returns the added item (containing a new id)
    * @param {object} body - it contains all required data to create a item
@@ -174,12 +188,14 @@ class Users {
    * be created (if username already in use)
    */
 
-  register(username, password) {
+  register(username, password,email) {
    
     const userFound = this.getOneByUsername(username);
     if (userFound) return;
+    const email = this.getOneByEmail(email);
+    if (email) return;
     
-    const newUser = this.addOne({ username: username, password: password});
+     this.addOne({ username: username, password: password});
 
     const authenticatedUser = {
       username: username,
