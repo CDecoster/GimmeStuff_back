@@ -1,0 +1,71 @@
+######### NORMAL OPERATION  ###########
+
+### Read all wishlists
+GET http://localhost:3000/wishlists
+
+### Read wishlist identified by 2
+GET http://localhost:3000/wishlists/1
+
+
+### Read own wishlist identified by 2
+GET http://localhost:3000/wishlists/user=1
+Content-Type: application/json
+
+### Create a wishlist
+POST http://localhost:3000/wishlists
+Content-Type: application/json
+
+{
+    "title":"Magic Green",
+    "utilisateur":"dominique",
+    "description":"description",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update the wishlist identified by 2
+PUT http://localhost:3000/wishlists/10
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "description":"descriptionModified"
+}
+
+### Delete wishlist identified by 
+DELETE http://localhost:3000/wishlists/13
+
+
+######### ERROR OPERATION  ###########
+
+### Read wishlist wich does not exists
+GET http://localhost:3000/wishlists/100
+
+### Create a wishlist without info for a property
+POST http://localhost:3000/wishlists
+Content-Type: application/json
+
+{
+    "title":"",
+    "utilisateur": "pierre",
+    "description":"description",
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Update for a wishlist which does not exist
+PUT http://localhost:3000/wishlists/200
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a wishlist which does not provide any info for a property
+PUT http://localhost:3000/wishlists/1
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2",
+    "utilisateur": "jerome",
+    "description":"description",
+    "content":"1"
+}

@@ -37,9 +37,10 @@ router.post("/login", async function (req, res, next) {
 
   const authenticatedUser = await userModel.login(
     req.body.username,
-    req.body.password
+    req.body.password,
   );
-  // Error code '401 Unauthorized' if the user could not be authenticated
+  
+   // Error code '401 Unauthorized' if the user could not be authenticated
   if (!authenticatedUser) return res.status(401).end();
 
   return res.json(authenticatedUser);
