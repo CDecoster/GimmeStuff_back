@@ -19,7 +19,8 @@ Content-Type: application/json
     "title":"Magic Green",
     "utilisateur":"dominique",
     "description":"description",
-    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+    "content":"Epinards, Brocolis, Olives vertes, Basilic",
+    "end": "2018-06-11T00:00"
 }
 
 ### Update the wishlist identified by 2
@@ -48,7 +49,8 @@ Content-Type: application/json
     "title":"",
     "utilisateur": "pierre",
     "description":"description",
-    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+    "content":"Epinards, Brocolis, Olives vertes, Basilic",
+    "end": "2018-06-11T00:00"
 }
 
 ### Update for a wishlist which does not exist
@@ -67,5 +69,6 @@ Content-Type: application/json
     "title":"Magic Green 2",
     "utilisateur": "jerome",
     "description":"description",
-    "content":"1"
+    "content":"1",
+    "end": "2018-06-11T00:00"
 }

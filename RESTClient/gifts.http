@@ -3,8 +3,9 @@
 ### Read all gifts
 GET http://localhost:3000/gifts
 
-### Read gift identified by 2
-GET http://localhost:3000/gifts/1
+### Read gift identified by idAmazon B01B2MAQ2G
+GET http://localhost:3000/gifts/idAmazon=B01B2MAQ2G
+Content-Type: application/json
 
 
 
@@ -18,7 +19,8 @@ Content-Type: application/json
     "image": "giftCreateImage1",
     "price": "giftCreatePrice1",
     "reserved": "false",
-    "url": "testCreateurl1"
+    "url": "testCreateurl1",
+    "idAmazon":"B00BSHB4XG"
   }
 
 ### Update the gift identified by 3
@@ -49,7 +51,8 @@ Content-Type: application/json
     "image": "giftCreateImage1",
     "price": "giftCreatePrice1",
     "reserved": "false",
-    "url": "testCreateurl1"
+    "url": "testCreateurl1",
+    "idAmazon": "B00BSHB4XG"
   }
 
 ### Update for a gift which does not exist 
@@ -69,6 +72,7 @@ Content-Type: application/json
     "image": "aze",
     "price": "aze",
     "reserved": "azed",
-    "url": "url"
+    "url": "url",
+    "idAmazon": "B00BSHB4XG"
 
 }

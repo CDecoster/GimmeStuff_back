@@ -9,7 +9,7 @@ const wishlistModel = new Wishlists();
 
 // GET /wishlists : read all the wishlists from a user
 router.get("/user=:id", function (req, res) {
-  console.log(`in route GET /wishlists/user=${req.params.id}`);
+  console.log(`GET /wishlists/user=${req.params.id}`);
 
   return res.json(wishlistModel.getOwn(req.params.id));
 });
@@ -46,7 +46,8 @@ router.post("/", authorize, function (req, res) {
     (req.body.hasOwnProperty('title') && req.body.title.length === 0) ||
     (req.body.hasOwnProperty('utilisateur') && req.body.utilisateur.length === 0) ||
     (req.body.hasOwnProperty('description') && req.body.description.length === 0) ||
-    (req.body.hasOwnProperty('content') && req.body.content.length === 0)
+    (req.body.hasOwnProperty('content') && req.body.content.length === 0) ||
+    (req.body.hasOwnProperty('end') && req.body.end.length === 0)
   )
 
     return res.status(400).end();
@@ -80,9 +81,9 @@ router.put("/:id", authorize, function (req, res) {
   if (
     !req.body ||
     (req.body.hasOwnProperty('title') && req.body.title.length === 0) ||
-    (req.body.hasOwnProperty('utilisateur') && req.body.utilisateurt.length) === 0 ||
     (req.body.hasOwnProperty('description') && req.body.description.length === 0) ||
-    (req.body.hasOwnProperty('content') && req.body.content.length === 0)
+    (req.body.hasOwnProperty('content') && req.body.content.length === 0) ||
+    (req.body.hasOwnProperty('end') && req.body.end.length === 0)
   )
     return res.status(400).end();
 
