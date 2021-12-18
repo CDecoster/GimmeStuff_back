@@ -1,1 +1,5 @@
-[{"id":1,"title":"giftTitle1","image":"giftImage1","price":"giftPrice1","reserved":"false","url":"testurl1","idAmazon":"B00BSHB4XG"},{"id":2,"title":"giftTitle2","image":"giftImage2","price":"giftPrice2","reserved":"true","url":"testurl2","idAmazon":"B01B2MAQ2G" }]
+<<<<<<< HEAD
+[{"id":1,"title":"giftTitle1","image":"giftImage1","price":"giftPrice1","reserved":"false","url":"testurl1","idAmazon":"B00BSHB4XG"},{"id":2,"title":"giftTitle2","image":"giftImage2","price":"giftPrice2","reserved":"true","url":"testurl2","idAmazon":"B01B2MAQ2G"}]
+=======
+[{"id":1,"title":"giftTitle1","image":"giftImage1","price":"giftPrice1","reserved":"false","url":"testurl1","idAmazon":"B00BSHB4XG"},{"id":2,"title":"giftTitle2","image":"giftImage2","price":"giftPrice2","reserved":"true","url":"testurl2","idAmazon":"B01B2MAQ2G"}]
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb

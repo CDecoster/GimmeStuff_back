@@ -15,8 +15,13 @@ const defaultGifts = [
     image: "giftImage1",
     price: "giftPrice1",
     reserved: "false",
+<<<<<<< HEAD
     url: "testurl1",
     idAmazon: "B00BSHB4XG"
+=======
+    url:"testurl1",
+    idAmazon:"B00BSHB4XG"
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb
   },
   {
     id: 2,
@@ -24,8 +29,13 @@ const defaultGifts = [
     image: "giftImage2",
     price: "giftPrice2",
     reserved: "true",
+<<<<<<< HEAD
     url: "testurl2",
     idAmazon: "B01B2MAQ2G"
+=======
+    url:"testurl2",
+    idAmazon:"B01B2MAQ2G"
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb
   },
 
 
@@ -70,6 +80,7 @@ class Gifts {
 
     return gifts[foundIndex];
   }
+<<<<<<< HEAD
   /**
      * Returns the gift identified by id
      * @param {number} idAmazon - idAmazon of the gift to find
@@ -82,6 +93,22 @@ class Gifts {
     console.log(foundIndex + " FOUND INDEX");
     return gifts[foundIndex];
   }
+=======
+
+   /**
+   * Returns the gift identified by id
+   * @param {number} idAmazon - idAmazon of the gift to find
+   * @returns {object} the gift found or undefined if the id does not lead to a gift
+   */
+    getOneByIdAmazon(idAmazon) {
+      const gifts = parse(this.jsonDbPath, this.defaultGifts);
+      const foundIndex = gifts.findIndex((gift) => gift.idAmazon == idAmazon);
+      if (foundIndex < 0) return;
+      console.log(foundIndex + " FOUND INDEX");
+      return gifts[foundIndex];
+    }
+
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb
   /**
    * Add a giftin the DB and returns the added gift (containing a new id)
    * @param {object} body - it contains all required data to create a gift
