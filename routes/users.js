@@ -31,13 +31,14 @@ router.post("/", async function (req, res) {
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
     !req.body ||
+    (req.body.hasOwnProperty('email') && req.body.email.length === 0) ||
     (req.body.hasOwnProperty('username') && req.body.username.length === 0) ||
-    (req.body.hasOwnProperty('password') && req.body.password.length === 0)
+    (req.body.hasOwnProperty('password') && req.body.password.length === 0) ||
+    (req.body.hasOwnProperty('birthday') && req.body.birthday.length === 0)
   )
 
     return res.status(400).end();
-  console.log("mdp : "+req.body.password);
-  console.log("before add one still in route")
+  
   const user = await userModel.addOne(req.body);
 
   // return the new user
@@ -62,8 +63,10 @@ router.put("/:id", function (req, res) {
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
     !req.body ||
+    (req.body.hasOwnProperty('email') && req.body.email.length === 0) ||
     (req.body.hasOwnProperty('username') && req.body.username.length === 0) ||
-    (req.body.hasOwnProperty('password')  && req.body.password.length === 0)
+    (req.body.hasOwnProperty('password')  && req.body.password.length === 0) ||
+    (req.body.hasOwnProperty('birthday') && req.body.birthday.length === 0)
   )
     return res.status(400).end();
   
