@@ -3,6 +3,8 @@ const jwtSecret = "gimmestuff!";
 
 const { Users } = require("../model/users");
 const userModel = new Users();
+const { Wishlists } = require("../model/wishlists");
+const wishlistModel = new Wishlists();
 
 /**
  * Authorize middleware to be used on the routes to be secured/
@@ -17,7 +19,7 @@ const userModel = new Users();
       const decoded = jwt.verify(token, jwtSecret);
       // check if decoded.username exists in users
       const userFound = userModel.getOneByUsername(decoded.username);
-  
+      
       if (!userFound) return res.status(403).end();
       // if (!userFound.admin) return res.status(403).end();
       // we could load the user in the request.user object so that it is available by all
@@ -30,9 +32,32 @@ const userModel = new Users();
     }
   };
 
+
   /*A créer un check pour si admin ou pas */
 
   /*Authorize a changer par un check si c'est bien le proprio de la wishlist qui essaye de faire un changement ajouter, modifier, delete*/
+  const authorizeCreator = (req, res, next) => {
+    let token = req.get("authorization");
+    if (!token) return res.status(401).end();
   
+    try {
+      const decoded = jwt.verify(token, jwtSecret);
+      // check if decoded.username exists in users
+      const userFound = userModel.getOneByUsername(decoded.username);
+      if (!userFound) return res.status(403).end();
+      const wishlistId = wishlistModel.getOne(req.id);
+      if(userFound != wishlistId) return res.status(403).end();
+      
+      
+      // if (!userFound.admin) return res.status(403).end();
+      // we could load the user in the request.user object so that it is available by all
+      // other middleware
+      req.user = userFound;
+      next(); // call the next Middleware
+    } catch (err) {
+      console.error("authorize: ", err);
+      return res.status(403).end();
+    }
+  };
   
-  module.exports = { authorize }; 
+  module.exports = { authorize, authorizeCreator }; 

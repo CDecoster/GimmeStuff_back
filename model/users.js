@@ -36,6 +36,12 @@ class Users {
     return nextId;
   }
 
+  // getId(username){
+  //   const items = parse(this.jsonDbPath, this.defaultItems);
+  //   for(i=1;i<=items.length;i++){
+  //     if(items[i].username ===  )
+  //   }
+  // }
   /**
    * Returns all items
    * @returns {Array} Array of items
@@ -152,8 +158,10 @@ class Users {
     console.log("it matched");
     const authenticatedUser = {
       username: username,
+      id: userFound.id,
       token: "Future signed token",
     };
+    console.log("used id : "+authenticatedUser.id);
     console.log("after token created");
     // replace expected token with JWT : create a JWT
     const token = jwt.sign(

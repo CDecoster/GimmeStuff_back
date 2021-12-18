@@ -1,7 +1,7 @@
 var express = require('express');
 var logger = require('morgan');
 
-var whishlistRouter = require('./routes/whishlists');
+var wishlistRouter = require('./routes/wishlists');
 var usersRouter = require('./routes/users');
 var authsRouter = require('./routes/auths')
 
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
-app.use('/whishlists', whishlistRouter);
+app.use('/wishlists', wishlistRouter);
 app.use('/users', usersRouter);
 app.use('/auths', authsRouter);
 
