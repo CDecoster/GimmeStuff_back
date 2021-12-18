@@ -16,6 +16,8 @@ const defaultItems = [
     username: "admin",
     password: "$2b$10$RqcgWQT/Irt9MQC8UfHmjuGCrQkQNeNcU6UtZURdSB/fyt6bMWARa",
     admin: "true",
+    birthday : "2019-06-11T00:00",
+    email: "admin@gmail.com"
     
   },
   
@@ -77,11 +79,24 @@ class Users {
     return items[foundIndex];
   }
 
+<<<<<<< HEAD
+   /**
+=======
     /**
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb
    * Returns the item identified by username
    * @param {string} email - username of the item to find
    * @returns {object} the item found or undefined if the username does not lead to a item
    */
+<<<<<<< HEAD
+    getOneByEmail(email) {
+      const items = parse(this.jsonDbPath, this.defaultItems);
+      const foundIndex = items.findIndex((item) => item.email == email);
+      if (foundIndex < 0) return;
+
+      return items[foundIndex];
+    }
+=======
      getOneByEmail(email) {
       const items = parse(this.jsonDbPath, this.defaultItems);
       const foundIndex = items.findIndex((item) => item.email == email);
@@ -90,6 +105,7 @@ class Users {
       return items[foundIndex];
     }
   
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb
 
   /**
    * Add a item in the DB and returns the added item (containing a new id)
@@ -109,6 +125,8 @@ class Users {
       username: body.username,
       password: hashedPassword,
       admin: "false",
+      birthday: body.birthday,
+      email: body.email
     };
     items.push(newitem);
     serialize(this.jsonDbPath, items);
@@ -196,6 +214,16 @@ class Users {
    * be created (if username already in use)
    */
 
+<<<<<<< HEAD
+  register(username, password, email, birthday) {
+   
+    const userFound = this.getOneByUsername(username);
+    if (userFound) return;
+    const emailFound = this.getOneByEmail(email);
+    if (emailFound) return;
+    /*newUser peut etre delete je pense car par réutilisé plus tard*/
+    this.addOne({ username: username, password: password, email: email, birthday: birthday});
+=======
   register(username, password,email) {
    
     const userFound = this.getOneByUsername(username);
@@ -204,6 +232,7 @@ class Users {
     if (emailFound) return;
     
      this.addOne({ username: username, password: password});
+>>>>>>> c673cd405f68c2af9d19613cc5647990c3de2dbb
 
     const authenticatedUser = {
       username: username,
