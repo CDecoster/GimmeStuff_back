@@ -196,12 +196,12 @@ class Users {
    * be created (if username already in use)
    */
 
-  register(username, password,email) {
+  register(username,password) {
    
     const userFound = this.getOneByUsername(username);
     if (userFound) return;
-    const email = this.getOneByEmail(email);
-    if (email) return;
+    //const emailFound = this.getOneByEmail(email);
+    //if (emailFound) return;
     
      this.addOne({ username: username, password: password});
 
