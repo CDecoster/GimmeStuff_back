@@ -156,7 +156,10 @@ class Users {
    */
    async updateOne(id, body) {
     if(body.password) body.password = await bcrypt.hash(body.password, saltRounds);
-    
+    const checkUsername = this.getOneByUsername(body.username);
+    if(checkUsername) return;
+    const checkEmail = this.getOneByEmail(body.email);
+    if(checkEmail) return;
     
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.id == id);
