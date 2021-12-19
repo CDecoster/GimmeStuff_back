@@ -88,8 +88,10 @@ router.put("/:id", function (req, res) {
   )
     return res.status(400).end();
   
+    
    const user = userModel.updateOne(req.params.id, req.body);
   // Send an error code 'Not Found' if the user was not found :
+  
   if (!user) return res.status(404).end();
 
   return res.json(user);
