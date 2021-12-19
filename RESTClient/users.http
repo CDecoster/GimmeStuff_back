@@ -28,7 +28,7 @@ PUT http://localhost:3000/users/2
 Content-Type: application/json
 
 {
-    "password":"mdpupdated"
+    "sharedWishList": "1,2,3"
 }
 
 
