@@ -97,11 +97,11 @@ class Users {
  * @returns {object} the item found or undefined if the username does not lead to a item
  */
   getOneByEmail(email) {
-    console.log("email d'inscription : " + email.value);
+    
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.email == email);
     if (foundIndex < 0) return;
-    console.log("email trouvé similaire :" + items[foundIndex].value);
+    
     return items[foundIndex];
   }
 
@@ -113,12 +113,12 @@ class Users {
 
   async addOne(body) {
     const items = parse(this.jsonDbPath, this.defaultItems);
-    console.log("password : " + body.password);
+    
     // hash the password
     const hashedPassword = await bcrypt.hash(body.password, saltRounds);
-    console.log("pwd crypted");
+    
     // add new item to the menu
-    console.log("birthday of addone user :" + body.birthday);
+    
     const newitem = {
       id: this.getNextId(),
       username: body.username,
@@ -156,10 +156,7 @@ class Users {
    */
    async updateOne(id, body) {
     body.password = await bcrypt.hash(body.password, saltRounds);
-    console.log("password :"+body.password);
-    console.log("email :"+body.email);
-    console.log("username :"+body.username);
-    console.log("birthday :"+body.birthday);
+    
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.id == id);
     if (foundIndex < 0) return;
@@ -184,22 +181,21 @@ class Users {
 
   async login(username, password) {
 
-    console.log("entrée login model user");
+    
     const userFound = this.getOneByUsername(username);
-    console.log("before check pwd");
+    
     if (!userFound) return;
     const match = await bcrypt.compare(password, userFound.password);
-    console.log("after bcyprt pwd check");
+   
     if (!match) return;
 
-    console.log("it matched");
+    
     const authenticatedUser = {
       username: username,
       id: userFound.id,
       token: "Future signed token",
     };
-    console.log("used id : " + authenticatedUser.id);
-    console.log("after token created");
+    
     // replace expected token with JWT : create a JWT
     const token = jwt.sign(
       { username: authenticatedUser.username }, // session data in the payload
@@ -222,12 +218,12 @@ class Users {
   async register(username, password, email, birthday) {
 
     const userFound = this.getOneByUsername(username);
-    console.log("userFOund :" + userFound);
+   
     if (userFound) return;
     const emailFound = this.getOneByEmail(email);
-    console.log("email found :" + emailFound);
+    
     if (emailFound) return;
-    console.log("birthday of user register :" + birthday);
+    
     /*newUser peut etre delete je pense car par réutilisé plus tard*/
     const newUser = await this.addOne({ username: username, password: password, email: email, birthday: birthday });
 
@@ -248,32 +244,7 @@ class Users {
     return authenticatedUser;
   };
 
-  /*
-  register(username, password,email) {
-   
-    const userFound = this.getOneByUsername(username);
-    if (userFound) return;
-    const emailFound = this.getOneByEmail(email);
-    if (emailFound) return;
-    
-     this.addOne({ username: username, password: password});
-
-    const authenticatedUser = {
-      username: username,
-      token: "Future signed token",
-    };
-
-    // replace expected token with JWT : create a JWT
-    const token = jwt.sign(
-      { username: authenticatedUser.username }, // session data in the payload
-      jwtSecret, // secret used for the signature
-      { expiresIn: LIFETIME_JWT } // lifetime of the JWT
-    );
-
-    authenticatedUser.token = token;
-    return authenticatedUser;
-  }
-  */
+ 
 }
 
 module.exports = { Users };

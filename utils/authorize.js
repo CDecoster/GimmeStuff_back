@@ -27,7 +27,7 @@ const wishlistModel = new Wishlists();
       req.user = userFound;
       next(); // call the next Middleware
     } catch (err) {
-      console.error("authorize: ", err);
+      
       return res.status(403).end();
     }
   };
@@ -55,7 +55,7 @@ const wishlistModel = new Wishlists();
       req.user = userFound;
       next(); // call the next Middleware
     } catch (err) {
-      console.error("authorize: ", err);
+      
       return res.status(403).end();
     }
   };

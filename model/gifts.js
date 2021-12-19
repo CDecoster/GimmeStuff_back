@@ -42,7 +42,7 @@ class Gifts {
     let nextId;
     if (gifts.length === 0) nextId = 1;
     else nextId = gifts[gifts.length - 1].id + 1;
-    console.log("getNextId");
+    
     return nextId;
   }
 

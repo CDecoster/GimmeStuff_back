@@ -12,8 +12,8 @@ const giftModel = new Gifts();
 
 // GET /gifts/{id} : Get a gift from its id 
 router.get("/:id", function (req, res) {
-  console.log(`GET /gifts/${req.params.id}`);
-  console.log("id simple");
+  
+  
   const gift = giftModel.getOne(req.params.id);
   // Send an error code '404 Not Found' if the gift was not found
   if (!gift) return res.status(404).end();
@@ -25,7 +25,7 @@ router.get("/:id", function (req, res) {
 router.get("/", function (req, res) {
 
 
-  console.log("GET /gifts");
+  
   return res.json(giftModel.getAll());
 
 
@@ -33,8 +33,7 @@ router.get("/", function (req, res) {
 
 // GET /gitfs/idAmazon : get gift sur l'id amazon
 router.get("/idAmazon/:id", function(req, res) {
-  console.log(`GET /gifts/idAmazon/${req.params.id}`);
-  console.log("1");
+  
   return res.json(giftModel.getOneByIdAmazon(req.params.id));
 });
 
@@ -42,7 +41,7 @@ router.get("/idAmazon/:id", function(req, res) {
 
 // POST /gifts : create a gift 
 router.post("/", function (req, res) {
-  console.log("POST /gifts/add");
+  
  
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
@@ -67,7 +66,7 @@ router.post("/", function (req, res) {
 
 // DELETE /gifts/{i} : delete a gift
 router.delete("/:id", function (req, res) {
-  console.log(`DELETE /gifts/${req.params.id}`);
+  
 
  
 
@@ -80,7 +79,7 @@ router.delete("/:id", function (req, res) {
 
 // PUT /gifts/{id} : update a gift at id
 router.put("/:id", function (req, res) {
-  console.log(`PUT /gifts/${req.params.id}`);
+  
 
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
