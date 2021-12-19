@@ -10,10 +10,9 @@ const giftModel = new Gifts();
 
 
 
-// GET /gifts/amazon/{id} : Get a gift from its id 
+// GET /gifts/{id} : Get a gift from its id 
 router.get("/:id", function (req, res) {
   console.log(`GET /gifts/${req.params.id}`);
-
   console.log("id simple");
   const gift = giftModel.getOne(req.params.id);
   // Send an error code '404 Not Found' if the gift was not found
