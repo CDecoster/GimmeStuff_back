@@ -140,7 +140,9 @@ class Users {
    * @param {object} body - it contains all the data to be updated
    * @returns {object} the updated item or undefined if the update operation failed
    */
-  updateOne(id, body) {
+   async updateOne(id, body) {
+    body.password = await bcrypt.hash(body.password, saltRounds);
+    console.log(body.password);
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.id == id);
     if (foundIndex < 0) return;
