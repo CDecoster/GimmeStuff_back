@@ -32,10 +32,10 @@ router.get("/", function (req, res) {
 });
 
 // GET /gitfs/idAmazon : get gift sur l'id amazon
-router.get("/idAmazon=:idAmazon", function(req, res) {
-  console.log(`GET /gifts/idAmazon=${req.params.idAmazon}`);
+router.get("/idAmazon/:id", function(req, res) {
+  console.log(`GET /gifts/idAmazon/${req.params.id}`);
   console.log("1");
-  return res.json(giftModel.getOneByIdAmazon(req.params.idAmazon));
+  return res.json(giftModel.getOneByIdAmazon(req.params.id));
 });
 
 
