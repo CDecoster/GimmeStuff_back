@@ -17,7 +17,6 @@ const defaultGifts = [
     reserved: "false",
     url: "testurl1",
     idAmazon: "B00BSHB4XG"
-
   },
   {
     id: 2,

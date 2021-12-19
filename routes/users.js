@@ -24,6 +24,22 @@ router.get("/:id", function (req, res) {
   return res.json(user);
 });
 
+// GET /users by username ou email
+router.get("/find/:username", function (req, res) {
+  console.log(`GET /users/find/${req.params.username}`);
+  
+
+  const username = userModel.getOneByUsername(req.params.username);
+  console.log("username :"+username);
+  if(username) return res.json(username);
+
+  const email = userModel.getOneByEmail(req.params.username);
+  console.log("username :"+username);
+  if(email) return res.json(email);
+
+  return res.status(404).end();
+});
+
 // POST /users : create a user 
 router.post("/", async function (req, res) {
   console.log("POST /users");

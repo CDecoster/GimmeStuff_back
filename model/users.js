@@ -12,15 +12,16 @@ const saltRounds = 10;
 // Default data
 const defaultItems = [
   {
-    id:1,
+    id: 1,
     username: "admin",
     password: "$2b$10$RqcgWQT/Irt9MQC8UfHmjuGCrQkQNeNcU6UtZURdSB/fyt6bMWARa",
     admin: "true",
-    birthday : "2019-06-11T00:00",
-    email: "admin@gmail.com"
-    
+    birthday: "2019-06-11T00:00",
+    email: "admin@gmail.com",
+    sharedWishList:"1,2"
+
   },
-  
+
 ];
 
 class Users {
@@ -80,18 +81,19 @@ class Users {
   }
 
 
-    /**
-   * Returns the item identified by username
-   * @param {string} email - username of the item to find
-   * @returns {object} the item found or undefined if the username does not lead to a item
-   */
-    getOneByEmail(email) {
-      const items = parse(this.jsonDbPath, this.defaultItems);
-      const foundIndex = items.findIndex((item) => item.email == email);
-      if (foundIndex < 0) return;
-
-      return items[foundIndex];
-    }
+  /**
+ * Returns the item identified by username
+ * @param {string} email - username of the item to find
+ * @returns {object} the item found or undefined if the username does not lead to a item
+ */
+  getOneByEmail(email) {
+    console.log("email d'inscription : "+email.value);
+    const items = parse(this.jsonDbPath, this.defaultItems);
+    const foundIndex = items.findIndex((item) => item.email == email);
+    if (foundIndex < 0) return;
+    console.log("email trouvé similaire :"+items[foundIndex].value);
+    return items[foundIndex];
+  }
 
   /**
    * Add a item in the DB and returns the added item (containing a new id)
@@ -101,11 +103,12 @@ class Users {
 
   async addOne(body) {
     const items = parse(this.jsonDbPath, this.defaultItems);
-    console.log("password : "+ body.password );
+    console.log("password : " + body.password);
     // hash the password
-    const hashedPassword = await bcrypt.hash(body.password, saltRounds); 
+    const hashedPassword = await bcrypt.hash(body.password, saltRounds);
     console.log("pwd crypted");
     // add new item to the menu
+    console.log("birthday of addone user :"+body.birthday);
     const newitem = {
       id: this.getNextId(),
       username: body.username,
@@ -164,7 +167,7 @@ class Users {
    */
 
   async login(username, password) {
-    
+
     console.log("entrée login model user");
     const userFound = this.getOneByUsername(username);
     console.log("before check pwd");
@@ -179,7 +182,7 @@ class Users {
       id: userFound.id,
       token: "Future signed token",
     };
-    console.log("used id : "+authenticatedUser.id);
+    console.log("used id : " + authenticatedUser.id);
     console.log("after token created");
     // replace expected token with JWT : create a JWT
     const token = jwt.sign(
@@ -200,15 +203,33 @@ class Users {
    * be created (if username already in use)
    */
 
-  register(username, password, email, birthday) {
-   
+  async register(username, password, email, birthday) {
+
     const userFound = this.getOneByUsername(username);
+    console.log("userFOund :"+userFound);
     if (userFound) return;
     const emailFound = this.getOneByEmail(email);
+    console.log("email found :"+emailFound);
     if (emailFound) return;
+    console.log("birthday of user register :"+birthday);
     /*newUser peut etre delete je pense car par réutilisé plus tard*/
-    this.addOne({ username: username, password: password, email: email, birthday: birthday});
+    const newUser = await this.addOne({ username: username, password: password, email: email, birthday: birthday });
+    
+    const authenticatedUser = {
+      username: username,
+      id: newUser.id,
+      token: "Future signed token",
+    };
 
+    // replace expected token with JWT : create a JWT
+    const token = jwt.sign(
+      { username: authenticatedUser.username }, // session data in the payload
+      jwtSecret, // secret used for the signature
+      { expiresIn: LIFETIME_JWT } // lifetime of the JWT
+    );
+
+    authenticatedUser.token = token;
+    return authenticatedUser;
   };
 
   /*
