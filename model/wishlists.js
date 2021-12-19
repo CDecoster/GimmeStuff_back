@@ -15,7 +15,7 @@ const defaultWishlists = [
     utilisateur: "nicolas",
     description: "description",
     content: "Gruyère, Sérac, Appenzel, Gorgonzola, Tomates",
-    end: "2015-06-11T00:00"
+    end: "2021-06-11T00:00"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const defaultWishlists = [
     utilisateur: "corention",
     description: "description",
     content: "Tomates, Courgettes, Oignons, Aubergines, Poivrons",
-    end: "2016-06-11T00:00"
+    end: "2022-06-11T00:00"
   },
   {
     id: 3,
@@ -31,24 +31,9 @@ const defaultWishlists = [
     utilisateur: "axel",
     description: "description",
     content: "Mozarella, Tomates, Oignons, Poivrons, Champignons, Olives",
-    end: "2017-06-11T00:00"
+    end: "2022-06-11T00:00"
   },
-  {
-    id: 4,
-    title: "Alpage",
-    utilisateur: "alexis",
-    description: "description",
-    content: "Gruyère, Mozarella, Lardons, Tomates",
-    end: "2018-06-11T00:00"
-  },
-  {
-    id: 5,
-    title: "Diable",
-    utilisateur: "maximilien",
-    description: "description",
-    content: "Tomates, Mozarella, Chorizo piquant, Jalapenos",
-    end: "2019-06-11T00:00"
-  },
+ 
 ];
 
 class Wishlists {
@@ -124,7 +109,7 @@ class Wishlists {
       title: escape(body.title),
       utilisateur: escape(body.utilisateur),
       description: escape(body.description),
-      content: escape(body.content),
+      content: "",
       end: escape(body.end)
     };
   

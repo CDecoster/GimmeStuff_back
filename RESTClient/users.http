@@ -3,6 +3,10 @@
 ### Read all users
 GET http://localhost:3000/users
 
+### Read username or email
+GET http://localhost:3000/users/find/nicolas
+
+
 ### Read user identified by 1
 GET http://localhost:3000/users/1
 
