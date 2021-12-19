@@ -47,7 +47,7 @@ class Wishlists {
     let nextId;
     if (wishlists.length === 0) nextId = 1;
     else nextId = wishlists[wishlists.length - 1].id + 1;
-    console.log("getNextId");
+    
     return nextId;
   }
 

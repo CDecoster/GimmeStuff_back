@@ -1,6 +1,6 @@
 var express = require("express");
 const { Users } = require("../model/users");
-const { verifyTokenAndAdmin } = require("../utils/authorize");
+
 
 var router = express.Router();
 
@@ -8,14 +8,14 @@ const userModel = new Users();
 
 // GET /users : read all the users from the menu
 router.get("/", function (req, res) {
-  console.log("GET /users");
+  
   return res.json(userModel.getAll());
 });
 
 
 // GET /users/{id} : Get a user from its id
 router.get("/:id", function (req, res) {
-  console.log(`GET /users/${req.params.id}`);
+  
 
   const user = userModel.getOne(req.params.id);
   // Send an error code '404 Not Found' if the user was not found
@@ -24,23 +24,19 @@ router.get("/:id", function (req, res) {
   return res.json(user);
 });
 
-// // GET /users/sharedWishlists : read all the users from the menu
-// router.get("/sharedWishLists/:id", function (req, res) {
-//   console.log(`GET /users/sharedWishlists/${req.params.id}`);
-//   return res.json(userModel.getSharedWishList(id));
-// });
+
 
 // GET /users by username ou email
 router.get("/find/:username", function (req, res) {
-  console.log(`GET /users/find/${req.params.username}`);
+ 
   
 
   const username = userModel.getOneByUsername(req.params.username);
-  console.log("username :"+username);
+  
   if(username) return res.json(username);
 
   const email = userModel.getOneByEmail(req.params.username);
-  console.log("username :"+username);
+  
   if(email) return res.json(email);
 
   return res.status(404).end();
@@ -48,7 +44,7 @@ router.get("/find/:username", function (req, res) {
 
 // POST /users : create a user 
 router.post("/", async function (req, res) {
-  console.log("POST /users");
+  
 
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
@@ -69,7 +65,7 @@ router.post("/", async function (req, res) {
 
 // DELETE /users/{i} : delete a user 
 router.delete("/:id", function (req, res) {
-  console.log(`DELETE /users/${req.params.id}`);
+  
 
   const user = userModel.deleteOne(req.params.id);
   // Send an error code '404 Not Found' if the user was not found
@@ -80,7 +76,7 @@ router.delete("/:id", function (req, res) {
 
 // PUT /users/{id} : update a user at id
 router.put("/:id", function (req, res) {
-  console.log(`PUT /users/${req.params.id}`);
+  
 
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (

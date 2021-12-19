@@ -9,7 +9,7 @@ const wishlistModel = new Wishlists();
 
 // GET /wishlists : read all the wishlists from a user
 router.get("/user=:id", function (req, res) {
-  console.log(`GET /wishlists/user=${req.params.id}`);
+  
 
   return res.json(wishlistModel.getOwn(req.params.id));
 });
@@ -17,7 +17,7 @@ router.get("/user=:id", function (req, res) {
 
 // GET /wishlists/{id} : Get a wishlist from its
 router.get("/:id", function (req, res) {
-  console.log(`GET /wishlists/${req.params.id}`);
+ 
 
   const wishlist = wishlistModel.getOne(req.params.id);
   // Send an error code '404 Not Found' if the wishlist was not found
@@ -30,7 +30,7 @@ router.get("/:id", function (req, res) {
 router.get("/", function (req, res) {
 
 
-  console.log("GET /wishlists");
+  
   return res.json(wishlistModel.getAll());
 
 
@@ -38,7 +38,7 @@ router.get("/", function (req, res) {
 
 // POST /wishlists : create a wishlist 
 router.post("/", authorize, function (req, res) {
-  console.log("POST /wishlists/add");
+  
 
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
@@ -61,7 +61,7 @@ router.post("/", authorize, function (req, res) {
 
 // DELETE /wishlists/{i} : delete a wishlist 
 router.delete("/:id", authorize, function (req, res) {
-  console.log(`DELETE /wishlists/${req.params.id}`);
+  
 
   
 
@@ -74,7 +74,7 @@ router.delete("/:id", authorize, function (req, res) {
 
 // PUT /wishlists/{id} : update a wishlist at id
 router.put("/:id", authorize, function (req, res) {
-  console.log(`PUT /wishlists/${req.params.id}`);
+  
 
   // Send an error code '400 Bad request' if the body parameters are not valid
   if (
