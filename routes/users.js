@@ -24,6 +24,12 @@ router.get("/:id", function (req, res) {
   return res.json(user);
 });
 
+// // GET /users/sharedWishlists : read all the users from the menu
+// router.get("/sharedWishLists/:id", function (req, res) {
+//   console.log(`GET /users/sharedWishlists/${req.params.id}`);
+//   return res.json(userModel.getSharedWishList(id));
+// });
+
 // GET /users by username ou email
 router.get("/find/:username", function (req, res) {
   console.log(`GET /users/find/${req.params.username}`);

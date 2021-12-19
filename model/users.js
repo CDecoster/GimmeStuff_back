@@ -18,7 +18,7 @@ const defaultItems = [
     admin: "true",
     birthday: "2019-06-11T00:00",
     email: "admin@gmail.com",
-    sharedWishList:"1,2"
+    sharedWishList: "1,2"
 
   },
 
@@ -54,6 +54,16 @@ class Users {
     return items;
   }
 
+  // /*
+  // get the wishLists shared with the user
+  // */
+  // getSharedWishList(id) {
+  //   const user = this.getOne(id);
+  //   if(!user) return;
+  //   return 
+
+  // }
+
   /**
    * Returns the item identified by id
    * @param {number} id - id of the item to find
@@ -87,11 +97,11 @@ class Users {
  * @returns {object} the item found or undefined if the username does not lead to a item
  */
   getOneByEmail(email) {
-    console.log("email d'inscription : "+email.value);
+    console.log("email d'inscription : " + email.value);
     const items = parse(this.jsonDbPath, this.defaultItems);
     const foundIndex = items.findIndex((item) => item.email == email);
     if (foundIndex < 0) return;
-    console.log("email trouvé similaire :"+items[foundIndex].value);
+    console.log("email trouvé similaire :" + items[foundIndex].value);
     return items[foundIndex];
   }
 
@@ -108,14 +118,15 @@ class Users {
     const hashedPassword = await bcrypt.hash(body.password, saltRounds);
     console.log("pwd crypted");
     // add new item to the menu
-    console.log("birthday of addone user :"+body.birthday);
+    console.log("birthday of addone user :" + body.birthday);
     const newitem = {
       id: this.getNextId(),
       username: body.username,
       password: hashedPassword,
       admin: "false",
       birthday: body.birthday,
-      email: body.email
+      email: body.email,
+      sharedWishList: ""
     };
     items.push(newitem);
     serialize(this.jsonDbPath, items);
@@ -208,15 +219,15 @@ class Users {
   async register(username, password, email, birthday) {
 
     const userFound = this.getOneByUsername(username);
-    console.log("userFOund :"+userFound);
+    console.log("userFOund :" + userFound);
     if (userFound) return;
     const emailFound = this.getOneByEmail(email);
-    console.log("email found :"+emailFound);
+    console.log("email found :" + emailFound);
     if (emailFound) return;
-    console.log("birthday of user register :"+birthday);
+    console.log("birthday of user register :" + birthday);
     /*newUser peut etre delete je pense car par réutilisé plus tard*/
     const newUser = await this.addOne({ username: username, password: password, email: email, birthday: birthday });
-    
+
     const authenticatedUser = {
       username: username,
       id: newUser.id,
