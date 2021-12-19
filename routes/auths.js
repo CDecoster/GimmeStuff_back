@@ -41,7 +41,8 @@ router.post("/login", async function (req, res, next) {
     (req.body.hasOwnProperty("password") && req.body.password.length === 0)
   )
     return res.status(400).end();
-
+    console.log("username in auths : "+req.body.username);
+    console.log("pwd in auths : "+req.body.password);
   const authenticatedUser = await userModel.login(
     req.body.username,
     req.body.password,
