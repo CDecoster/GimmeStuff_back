@@ -46,13 +46,12 @@ router.post("/", authorize, function (req, res) {
     (req.body.hasOwnProperty('title') && req.body.title.length === 0) ||
     (req.body.hasOwnProperty('utilisateur') && req.body.utilisateur.length === 0) ||
     (req.body.hasOwnProperty('description') && req.body.description.length === 0) ||
-    (req.body.hasOwnProperty('content') && req.body.content.length === 0) ||
     (req.body.hasOwnProperty('end') && req.body.end.length === 0)
   )
 
     return res.status(400).end();
 
-  if (req.user.admin !== "true") return res.status(403).end();
+  
 
   const wishlist = wishlistModel.addOne(req.body);
 
@@ -64,7 +63,7 @@ router.post("/", authorize, function (req, res) {
 router.delete("/:id", authorize, function (req, res) {
   console.log(`DELETE /wishlists/${req.params.id}`);
 
-  if (req.user.admin !== "true") return res.status(403).end();
+  
 
   const wishlist = wishlistModel.deleteOne(req.params.id);
   // Send an error code '404 Not Found' if the wishlist was not found
@@ -87,7 +86,7 @@ router.put("/:id", authorize, function (req, res) {
   )
     return res.status(400).end();
 
-  if (req.user.admin !== "true") return res.status(403).end();
+  
 
   const wishlist = wishlistModel.updateOne(req.params.id, req.body);
   // Send an error code 'Not Found' if the wishlist was not found :
